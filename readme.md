@@ -1,63 +1,111 @@
-# SaveQuest — Decentralized Group Savings with DeFi Yields
+# PoolSave — Community Rotating Savings With Collective Yield Allocation
 
-## Inspiration  
-In Africa and other emerging markets, communities rely on informal savings systems like *ajo* and *esusu* to meet financial goals.  
-These systems work through trust but suffer from idle funds, manual record-keeping, and fraud risks.  
+## Inspiration
+Across Africa and Latin America, rotating savings circles — *ajo, esusu, tontines, juntas* — have helped communities reach financial goals for decades.
 
-We built **SaveQuest** to merge the **trust of group savings** with the **automation and yield power of DeFi** — bringing transparency, safety, and growth to community finance.
+They work because of trust and discipline, but they also face challenges:
+
+- Funds earn no yield during the cycle  
+- Manual bookkeeping leads to errors  
+- High risk of fraud or mismanagement  
+- Hard to coordinate across distances  
+- No transparent record of who receives payouts  
+
+PoolSave brings this cultural tradition into the digital age using blockchain — adding automation, transparency, and yield generation while keeping the community spirit intact.
 
 ---
 
-## What We Built  
-**SaveQuest** is an onchain savings protocol on **Starknet** where members deposit **stablecoins or wrapped BTC** into shared pools.  
-Funds are deployed into **yield-generating vaults**, and the **yield is rotated monthly** among members, while the **principal remains untouched**.  
+## What We Built
+**PoolSave is a decentralized group-savings platform that upgrades traditional rotating savings with pooled yields and member voting for payout selection.**
+
+- Members deposit stablecoins into shared pools  
+- Funds are deployed into yield-generating strategies  
+- At the end of each cycle:  
+  - Principal stays intact  
+  - Only the yield is distributed  
+  - Members vote to select the beneficiary  
+
+This mirrors traditional systems while improving fairness and efficiency.
+
+---
+
+## Core Features
+- On-chain savings pool  
+- Automated contribution tracking  
+- Pooled yield for higher returns  
+- **Member voting** to decide who receives yield each cycle  
+- Fully transparent contribution and payout history  
+- Optional lock-in periods  
+- Mobile-first UX for accessibility  
+
+---
+
+## How It Works
+Each pool has **N** members contributing a fixed amount.
+
+Let:  
+- **P** = total pooled principal  
+- **r** = yield generated in the cycle  
+
+Cycle reward:
 
 \[
-\text{Monthly Yield Share: } Y_t = \frac{r_t \times P}{N}
+\text{Cycle Reward} = r \times P
 \]
 
-- **Blockchain:** Starknet (Ethereum L2)  
-- **Assets:** USDT, USDC, wBTC  
-- **Model:** Group savings + yield vaults = monthly rewards  
+Members vote on who receives the reward.  
+The cycle resets, principal remains untouched, and yield continues to compound.
 
 ---
 
-## How We Built It  
-We designed smart contracts in **Cairo** to handle deposits, rotations, and yield distribution.  
-An **Express.js backend** listens for contract events and automates pool updates.  
-The planned frontend is a **React Native + native-wind** app for mobile users to create and join pools seamlessly.
+## How We Built It
+PoolSave is powered by blockchain-based smart contracts that handle:
+
+- Deposits & withdrawals  
+- Membership logic  
+- Contribution accounting  
+- Yield accumulation  
+- Secure voting & payout execution  
+
+A backend monitors on-chain events, while a mobile interface simplifies user onboarding.
 
 ---
 
-## What We Learned  
-- How to blend **social finance** and **DeFi**  
-- Building scalable group logic on **Starknet**  
-- Designing **transparent yield mechanisms** for real users  
+## Challenges
+- Designing a fair and culturally familiar voting system  
+- Handling large member pools efficiently  
+- Making UX simple for non-crypto users  
+- Ensuring transparency without compromising safety  
 
 ---
 
-## Challenges  
-- Yield distribution fairness  
-- Cairo gas optimization  
-- UX design for non-crypto users  
+## What We Learned
+- Blending cultural finance with decentralized technology  
+- Designing intuitive mobile-first crypto experiences  
+- Implementing group coordination logic on-chain  
+- Supporting financial discipline with contract-enforced rules  
 
 ---
 
-## Vision  
-**SaveQuest** makes collective savings smarter — turning community trust into automated, yield-earning digital finance.
+## Vision
+PoolSave becomes the **global digital version of ajo/esusu/tontines**:
 
+- Communities save together  
+- Trust becomes transparency  
+- Yield is pooled and distributed fairly  
+- Members collectively decide beneficiaries  
+- Saving becomes automated, safe, and rewarding  
 
+---
 
-| **Factor**               | **Individual Farming**                                        | **SaveQuest Pooling**                                       |
-| ------------------------ | ------------------------------------------------------------- | ----------------------------------------------------------- |
-| **Capital Efficiency**   | Small deposit = low yield, high relative gas fees             | Large pooled deposit maximizes yield & minimizes costs      |
-| **User Experience**      | Complex: must pick farms, harvest manually, pay gas each time | Simple: one-click deposit, auto-harvest, no manual strategy |
-| **Engagement**           | Boring — passive interest accrual                             | Fun — random monthly “winner,” gamified saving              |
-| **Accessibility**        | Requires technical knowledge, risk assessment                 | Abstracted away — just join a pool                          |
-| **Financial Discipline** | Easy to withdraw early                                        | Locked-in commitment helps enforce saving                   |
-| **Transparency**         | Harder to verify yield distribution                           | Fully on-chain, verifiable selection & accounting           |
+## Choosing the Right Blockchain (TBD)
+PoolSave requires:
 
+- Low fees  
+- Scalability  
+- High security  
+- Easy onboarding  
+- Friendly developer tooling  
+- Accessible on/off-ramps  
 
-[Contract Address](https://sepolia.starkscan.co/contract/0x0434c56079d512ccfc3ced763b75221dd2d577372eee23710e4b0d7add52d602)
-
-[demo video](https://vimeo.com/1127737467?share=copy&fl=sv&fe=ci)
+Final network selection is **TBD**, and will be based on user needs across Africa and LATAM.

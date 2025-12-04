@@ -5,14 +5,23 @@ import { Contract, RpcProvider } from "starknet";
 import savequestAbi from '@/app/Abis/savequestAbi.json'
 import { useAegis } from "@cavos/aegis";
 import { CONTRACTS, NETWORK } from "../config/config";
+import * as SecureStore from "expo-secure-store";
 
 export default function Savings() {
   const { aegisAccount } = useAegis();
   const [balance, setBalance] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isDemoMode, setIsDemoMode] = useState(false);
 
   const getUserSavingBalance = async () => {
-   
+    // Check for demo mode
+    const demoMode = await SecureStore.getItemAsync("demo_mode");
+    if (demoMode === "true") {
+      setIsDemoMode(true);
+      setBalance(12500); // Mock demo balance
+      return;
+    }
+
     const provider = new RpcProvider({ nodeUrl: NETWORK.rpcUrl });
 
     if (!aegisAccount?.isWalletConnected()) return;
@@ -85,8 +94,8 @@ export default function Savings() {
           <View className="flex flex-row items-center gap-x-3 p-[14px] bg-[#FFFFFF1A] rounded-[12px] border-l-[8px] border-accent">
             <View className="w-[38px] h-[38px] bg-accent rounded-lg" />
             <View className="flex-1">
-              <Text className="text-white font-extrabold text-[16px]">BTC Savings</Text>
-              <Text className="text-text text-[12px]">Bitcoin vault</Text>
+              <Text className="text-white font-extrabold text-[16px]">POL Savings</Text>
+              <Text className="text-text text-[12px]">Polygon vault</Text>
               <View className="h-[8px] bg-[#5A5A5A] rounded-full mt-2 overflow-hidden"><View className="h-full w-[38%] bg-[#AAAAAA]" /></View>
             </View>
             <View className="items-end">

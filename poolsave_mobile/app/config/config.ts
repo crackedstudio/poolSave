@@ -2,7 +2,7 @@
 
 export const NETWORK = {
     name: "sepolia",
-    rpcUrl: "https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_8/-lEzc_71TeeTviJ9dEf6nKclkiYnQet8",
+    rpcUrl: "https://polygon-sepolia.g.alchemy.com/polygon/version/rpc/v0_8/-lEzc_71TeeTviJ9dEf6nKclkiYnQet8",
   };
   
   export const CONTRACTS = {

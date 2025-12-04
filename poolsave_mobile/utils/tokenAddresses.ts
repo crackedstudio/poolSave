@@ -6,7 +6,7 @@ export const TOKEN_ADDRESSES = {
   mainnet: {
     USDT: '0x...', // Replace with actual USDT contract address
     USDC:  '0x...', // Replace with actual USDC contract address  
-    BTC: '0x...',  // Replace with actual BTC contract address
+    POL: '0x...',  // Replace with actual POL contract address
   },
   // Testnet addresses (example - replace with actual addresses)
   testnet: {
@@ -22,7 +22,7 @@ export const TOKEN_ADDRESSES = {
   }
 }
 
-export const getTokenAddress = (token: 'USDT' | 'USDC' | 'BTC', network: 'mainnet' | 'testnet' | 'sepolia' = 'sepolia'): string => {
+export const getTokenAddress = (token: 'USDT' | 'USDC' | 'POL', network: 'mainnet' | 'testnet' | 'sepolia' = 'sepolia'): string => {
   return TOKEN_ADDRESSES[network][token]
 }
 
@@ -32,7 +32,7 @@ export const YIELD_CONTRACT_ADDRESSES = {
   mainnet: {
     usdc: '0x...', // Replace with actual Compound contract address
     usdt: '0x...',      // Replace with actual Aave contract address
-    btc: '0x...', // Replace with actual Yield Protocol contract address
+    pol: '0x...', // Replace with actual Yield Protocol contract address
   },
   // Testnet addresses (example - replace with actual addresses)
   testnet: {
@@ -48,6 +48,6 @@ export const YIELD_CONTRACT_ADDRESSES = {
   }
 }
 
-export const getYieldContractAddress = (protocol: 'usdc' | 'usdt' | 'btc', network: 'mainnet' | 'testnet' | 'sepolia' = 'sepolia'): string => {
+export const getYieldContractAddress = (protocol: 'usdc' | 'usdt' | 'pol', network: 'mainnet' | 'testnet' | 'sepolia' = 'sepolia'): string => {
   return YIELD_CONTRACT_ADDRESSES[network][protocol]
 }

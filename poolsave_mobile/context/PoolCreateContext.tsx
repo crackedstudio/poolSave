@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useMemo, useState } from 'react'
 import { getTokenAddress, getYieldContractAddress } from '@/utils/tokenAddresses'
 
-export type TokenType = 'USDT' | 'USDC' | 'BTC'
+export type TokenType = 'USDT' | 'USDC' | 'POL'
 export type GroupType = 'closed' | 'open'
-export type YieldContractType = 'usdc' | 'usdt' | 'btc'
+export type YieldContractType = 'usdc' | 'usdt' | 'pol'
 
 export type Member = { id: string; handle: string }
 

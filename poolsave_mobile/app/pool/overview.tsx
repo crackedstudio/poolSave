@@ -22,8 +22,8 @@ export default function PoolOverview() {
 
         <View className="bg-secondary rounded-2xl p-[24px]">
           <Text className="text-black text-[16px] font-extrabold">POWERED BY</Text>
-          <Text className="text-black text-[28px] font-extrabold mt-1">BTCfi</Text>
-          <Text className="text-black/80 mt-1">On StarkNet</Text>
+          <Text className="text-black text-[28px] font-extrabold mt-1">POLfi</Text>
+          <Text className="text-black/80 mt-1">On Polygon</Text>
         </View>
 
         <View className="mt-6">
@@ -43,7 +43,7 @@ export default function PoolOverview() {
               <View className="bg-secondary px-3 py-2 rounded-lg"><Text className="text-black font-extrabold">ADMIN</Text></View>
             </View>
 
-            {["@alex_crypto","@sarah_defi","@mike_btc"].slice(0, Math.max(0, membersCount-1)).map((h) => (
+            {["@alex_crypto","@sarah_defi","@mike_pol"].slice(0, Math.max(0, membersCount-1)).map((h) => (
               <View key={h} className="bg-bg rounded-2xl p-[16px] flex-row items-center justify-between">
                 <View>
                   <Text className="text-white text-[16px] font-extrabold">{h}</Text>

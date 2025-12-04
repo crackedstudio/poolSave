@@ -44,7 +44,7 @@ const profile = () => {
                 <View className="w-[38px] h-[38px] bg-secondary rounded-lg"></View>
                 <View className="flex flex-col">
                   <Text className="text-white font-bold text-[16px]">
-                    Starknet
+                    Polygon
                   </Text>
                   <Text className="text-text text-[12px]">ox1234...567890</Text>
                 </View>

@@ -105,7 +105,7 @@ export default function CreatePoolInfo() {
 
           <Text className="text-text mt-5 mb-3">TOKEN TYPE</Text>
           <View className="flex flex-row gap-x-3">
-            {(['USDT','USDC','BTC'] as TokenType[]).map((t) => (
+            {(['USDT','USDC','POL'] as TokenType[]).map((t) => (
               <TouchableOpacity key={t} onPress={() => handleTokenChange(t)} className={`flex-1 h-[70px] rounded-xl items-center justify-center ${token === t ? 'bg-secondary' : 'bg-highlight'}`}>
                 <Text className={`${token === t ? 'text-black' : 'text-white'} font-extrabold`}>{t}</Text>
               </TouchableOpacity>
@@ -131,7 +131,7 @@ export default function CreatePoolInfo() {
           <Text className="text-white text-[18px] font-extrabold mb-3">YIELD PROTOCOL</Text>
           <Text className="text-text mb-3">SELECT YIELD PROTOCOL</Text>
           <View className="flex flex-row gap-x-3">
-            {(['usdc','usdt','btc'] as YieldContractType[]).map((y) => (
+            {(['usdc','usdt','pol'] as YieldContractType[]).map((y) => (
               <TouchableOpacity key={y} onPress={() => handleYieldContractChange(y)} className={`flex-1 p-2 h-[70px] rounded-xl items-center justify-center ${yieldContractType === y ? 'bg-secondary' : 'bg-highlight'}`}>
                 <Text className={`${yieldContractType === y ? 'text-black' : 'text-white'} font-extrabold text-xs text-center`}>{y}</Text>
               </TouchableOpacity>

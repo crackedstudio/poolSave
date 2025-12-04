@@ -15,7 +15,7 @@ const PoolCard = ({ pool }: { pool: any }) => {
   };
 
   const getPoolName = (poolId: number) => {
-    const names = ['Stablecoin Squad', 'BTC Vault', 'Yield Masters', 'Crypto Circle', 'DeFi Alliance'];
+    const names = ['Stablecoin Squad', 'POL Vault', 'Yield Masters', 'Crypto Circle', 'DeFi Alliance'];
     return names[poolId % names.length] || `Pool ${poolId}`;
   };
 

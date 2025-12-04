@@ -21,9 +21,23 @@ const onboarding = () => {
   const [isDeploying, setIsDeploying] = useState(false);
   const [isGoogleLoggingIn, setIsGoogleLoggingIn] = useState(false);
   const [isAppleLoggingIn, setIsAppleLoggingIn] = useState(false);
+  const [isDemoMode, setIsDemoMode] = useState(false);
 
     const loadExistingWallet = useCallback(async () => {
       try {
+        // Check for demo mode first
+        const demoMode = await SecureStore.getItemAsync("demo_mode");
+        if (demoMode === "true") {
+          setIsDemoMode(true);
+          const demoAddress = await SecureStore.getItemAsync("account_address");
+          if (demoAddress) {
+            setWalletAddress(demoAddress);
+            // Navigate directly to tabs in demo mode
+            router.replace("/(tabs)");
+            return;
+          }
+        }
+
         // Retrieve the saved private key from secure storage
         const savedPrivateKey = await SecureStore.getItemAsync("wallet_private_key");
         const savedAccessToken = await SecureStore.getItemAsync("access_token");
@@ -60,10 +74,10 @@ const onboarding = () => {
   // };
 
   useEffect(() => {
-    if (aegisAccount?.isWalletConnected()) {
+    if (aegisAccount?.isWalletConnected() || isDemoMode) {
       router.replace("/(tabs)");
     }
-  }, [aegisAccount?.address])
+  }, [aegisAccount?.address, isDemoMode])
 
   // Logout function to clear session
   const logout = async () => {
@@ -71,14 +85,43 @@ const onboarding = () => {
       await SecureStore.deleteItemAsync("wallet_private_key");
       await SecureStore.deleteItemAsync("access_token");
       await SecureStore.deleteItemAsync("account_address");
+      await SecureStore.deleteItemAsync("demo_mode");
       setWalletAddress(null);
+      setIsDemoMode(false);
       console.log('Logged out successfully');
     } catch (error) {
       console.error('Logout failed:', error);
     }
   };
 
-    if (aegisAccount?.isWalletConnected()) {
+  // Demo mode login - creates a mock session for demo purposes
+  const loginWithDemo = async () => {
+    try {
+      // Create a mock wallet address for demo
+      const mockAddress = "0x0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
+      const mockPrivateKey = "demo_private_key_" + Date.now();
+      const mockAccessToken = "demo_access_token_" + Date.now();
+
+      // Store demo session data
+      await SecureStore.setItemAsync("wallet_private_key", mockPrivateKey);
+      await SecureStore.setItemAsync("access_token", mockAccessToken);
+      await SecureStore.setItemAsync("account_address", mockAddress);
+      await SecureStore.setItemAsync("demo_mode", "true");
+
+      setWalletAddress(mockAddress);
+      setIsDemoMode(true);
+      
+      // Navigate to tabs
+      router.replace("/(tabs)");
+      console.log('Demo mode activated:', mockAddress);
+    } catch (error) {
+      console.error('Demo login failed:', error);
+      Alert.alert('Demo Mode Failed', 'Failed to activate demo mode. Please try again.');
+    }
+  };
+
+    if (aegisAccount?.isWalletConnected() || isDemoMode) {
+      const displayAddress = isDemoMode ? walletAddress : aegisAccount?.address;
       return (
         <SafeAreaView className="bg-primary w-full h-full items-center justify-center">
           <View className="flex flex-col gap-y-6 items-center px-[25px]">
@@ -88,11 +131,16 @@ const onboarding = () => {
             
             <View className="flex flex-col items-center gap-y-4">
               <Text className="text-white text-[24px] font-bold text-center">
-                Welcome Back!
+                {isDemoMode ? "Demo Mode Active" : "Welcome Back!"}
               </Text>
               <Text className="text-text text-[14px] text-center">
-                Wallet Address: {aegisAccount?.address?.slice(0, 6)}...{aegisAccount?.address?.slice(-4)}
+                Wallet Address: {displayAddress?.slice(0, 6)}...{displayAddress?.slice(-4)}
               </Text>
+              {isDemoMode && (
+                <Text className="text-yellow-400 text-[12px] text-center mt-2">
+                  ⚠️ Demo Mode - No real transactions
+                </Text>
+              )}
             </View>
 
             <TouchableOpacity 
@@ -240,7 +288,7 @@ const onboarding = () => {
 
           <View className="flex flex-col w-1/2 p-[16px] border-r-[8px] border-b-[8px] rounded-[12px] justify-center gap-y-2">
             <View className="w-[33.097px] h-[33.097px] bg-accent rounded-lg"></View>
-            <Text className="text-white font-bold text-[14px]">BTC VAULt</Text>
+            <Text className="text-white font-bold text-[14px]">POL VAULt</Text>
             <Text className="text-highlight text-[12px]">7.8% APY</Text>
           </View>
         </View>
@@ -281,11 +329,18 @@ const onboarding = () => {
                 </>
               )}
             </TouchableOpacity>
+
+            <TouchableOpacity 
+              className="w-full bg-secondary border border-secondary h-[56px] rounded-[16px] justify-center items-center flex-row mt-2"
+              onPress={loginWithDemo}
+            >
+              <Text className="text-primary font-semibold text-[16px]">🎭 Demo Mode</Text>
+            </TouchableOpacity>
           </View>
           
           <View>
             <Text className="text-text font-semibold text-center text-[12px]">
-              POWERED BY BTCFI ON STARKNET
+              POWERED BY POLYGON
             </Text>
           </View>
         </View>

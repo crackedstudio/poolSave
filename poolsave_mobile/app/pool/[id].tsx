@@ -46,9 +46,9 @@ const mockPools: Record<string, {
       { id: 'a3', type: 'payout', amount: 'Paid to Alex', date: 'Dec 01, 2024', accent: 'accent' },
     ],
   },
-  'bitcoin-builders': {
-    title: 'Bitcoin Builders',
-    subtitle: 'BTC Pool',
+  'polygon-builders': {
+    title: 'Polygon Builders',
+    subtitle: 'POL Pool',
     color: 'accent',
     total: '$1,800',
     members: 6,
@@ -85,7 +85,7 @@ export default function PoolDetails() {
   // const formattedValue = Number(value) / 10 ** poolData.collateral.decimals;
   // Aegis SDK hooks - provides access to wallet and transaction functions
   const { aegisAccount, currentAddress } = useAegis();
-  const provider = new RpcProvider({ nodeUrl: 'https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_8/-lEzc_71TeeTviJ9dEf6nKclkiYnQet8' });
+  const provider = new RpcProvider({ nodeUrl: 'https://polygon-sepolia.g.alchemy.com/polygon/version/rpc/v0_8/-lEzc_71TeeTviJ9dEf6nKclkiYnQet8' });
   const savequestInstance = new Contract(savequestAbi, CONTRACTS.saveQuest, provider);
     // State for transaction execution
     const [isExecuting, setIsExecuting] = useState(false);
